@@ -195,13 +195,22 @@
 
         // 入力イベントを監視
         inputField.addEventListener('input', () => {
+            // 入力されたテキストが現在の単語と一致した場合
             if (inputField.value === currentWord) {
-                score++;
-                currentWord = getRandomWord();
-                currentWordDisplay.textContent = currentWord;
+                score++; // スコアを増加
+                currentWord = getRandomWord(); // 新しい単語を取得
+                currentWordDisplay.textContent = currentWord; // 画面に新しい単語を表示
+
+                // 入力フィールドをクリア
                 inputField.value = '';
+
+                // 入力フィールドの変換を防ぐため、少し遅延を入れる
+                setTimeout(() => {
+                    inputField.focus(); // 入力フィールドにフォーカスを戻す
+                }, 1); // 0ms 待機で変換を待たずにフォーカスを戻す
             }
         });
+
 
         // ゲーム初期化
         document.addEventListener('DOMContentLoaded', () => {
